@@ -2,25 +2,25 @@ package com.example.CryptoParser.CryptoRepo;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Сryptocurrency {
+public class Cryptocurrency {
     private int id;
     private String name;
     private String symbol;
     private String slug;
-    private long circulatingSupply;
+    private int circulatingSupply;
     private BigDecimal priceUSD;
     private BigDecimal marketCapUSD;
 
-    public Сryptocurrency(int id, String name, String symbol, String slug,
-                          long circulatingSupply, BigDecimal priceUSD,
+    public Cryptocurrency(int id, String name, String symbol, String slug,
+                          int circulatingSupply, BigDecimal priceUSD,
                           BigDecimal marketCapUSD) {
-        validateID();
-        validateName();
-        validateSymbol();
-        validateSlug();
-        validateCirculatingSupply();
-        validateMarketCap();
-        validatePrice();
+        validateID(id);
+        validateName(name);
+        validateSymbol(symbol);
+        validateSlug(slug);
+        validateCirculatingSupply(circulatingSupply);
+        validateMarketCap(marketCapUSD);
+        validatePrice(priceUSD);
         this.id = id;
         this.name = name;
         this.symbol = symbol;
@@ -66,7 +66,7 @@ public class Сryptocurrency {
         return circulatingSupply;
     }
 
-    public void setCirculatingSupply(long circulatingSupply) {
+    public void setCirculatingSupply(int circulatingSupply) {
         this.circulatingSupply = circulatingSupply;
     }
 
@@ -86,38 +86,38 @@ public class Сryptocurrency {
         this.marketCapUSD = marketCapUSD;
     }
 
-    public void validateID(){
-        if(this.id < 0){
+    public void validateID(int id){
+        if(id < 0){
             throw new IllegalArgumentException("*/Id/* не может быть отрицательным");
         }
     }
-    public void validateName(){
-        if(this.name.isEmpty()){
+    public void validateName(String name){
+        if(name.isEmpty()){
             throw new IllegalArgumentException("*/name/* не может быть пустым");
         }
     }
-    public void validateSymbol(){
-        if(this.symbol.isEmpty()){
+    public void validateSymbol(String symbol){
+        if(symbol.isEmpty()){
             throw new IllegalArgumentException("*/symbol/* не может быть пустым");
         }
     }
-    public void validateSlug(){
-        if(this.slug.isEmpty()){
+    public void validateSlug(String slug){
+        if(slug.isEmpty()){
             throw new IllegalArgumentException("*/slug/* не может быть пустым");
         }
     }
-    public void validateCirculatingSupply(){
-        if(this.circulatingSupply < 0){
+    public void validateCirculatingSupply(int circulatingSupply){
+        if(circulatingSupply < 0){
             throw new IllegalArgumentException("*/circulatingSupply/* не может быть отрицательным");
         }
     }
-    public void validatePrice(){
-        if(this.priceUSD.compareTo(BigDecimal.ZERO) < 0){
+    public void validatePrice(BigDecimal priceUSD){
+        if(priceUSD.compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("*/priceUSD/* не может быть отрицательным");
         }
     }
-    public void validateMarketCap(){
-        if(this.marketCapUSD.compareTo(BigDecimal.ZERO) < 0){
+    public void validateMarketCap(BigDecimal marketCapUSD){
+        if(marketCapUSD.compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("*/marketCap/* не может быть отрицательным");
         }
     }
@@ -129,14 +129,14 @@ public class Сryptocurrency {
                 "\n" + slug +
                 "\n" + priceUSD +
                 "\n" + marketCapUSD +
-                "\n" + circulatingSupply;
+                "\n" + circulatingSupply + "\n";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Сryptocurrency that = (Сryptocurrency) o;
+        Cryptocurrency that = (Cryptocurrency) o;
         return id == that.id &&
                 circulatingSupply == that.circulatingSupply &&
                 Objects.equals(name, that.name) &&

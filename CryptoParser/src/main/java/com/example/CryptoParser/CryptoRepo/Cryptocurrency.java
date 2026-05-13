@@ -1,7 +1,6 @@
 package com.example.CryptoParser.CryptoRepo;
 import java.math.BigDecimal;
 import java.util.Objects;
-
 public class Cryptocurrency {
     private int id;
     private String name;
@@ -86,37 +85,37 @@ public class Cryptocurrency {
         this.marketCapUSD = marketCapUSD;
     }
 
-    public void validateID(int id){
+    private void validateID(int id){
         if(id < 0){
             throw new IllegalArgumentException("*/Id/* не может быть отрицательным");
         }
     }
-    public void validateName(String name){
+    private void validateName(String name){
         if(name.isEmpty()){
             throw new IllegalArgumentException("*/name/* не может быть пустым");
         }
     }
-    public void validateSymbol(String symbol){
+    private void validateSymbol(String symbol){
         if(symbol.isEmpty()){
             throw new IllegalArgumentException("*/symbol/* не может быть пустым");
         }
     }
-    public void validateSlug(String slug){
+    private void validateSlug(String slug){
         if(slug.isEmpty()){
             throw new IllegalArgumentException("*/slug/* не может быть пустым");
         }
     }
-    public void validateCirculatingSupply(int circulatingSupply){
+    private void validateCirculatingSupply(int circulatingSupply){
         if(circulatingSupply < 0){
             throw new IllegalArgumentException("*/circulatingSupply/* не может быть отрицательным");
         }
     }
-    public void validatePrice(BigDecimal priceUSD){
+    private void validatePrice(BigDecimal priceUSD){
         if(priceUSD.compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("*/priceUSD/* не может быть отрицательным");
         }
     }
-    public void validateMarketCap(BigDecimal marketCapUSD){
+    private void validateMarketCap(BigDecimal marketCapUSD){
         if(marketCapUSD.compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("*/marketCap/* не может быть отрицательным");
         }
@@ -143,7 +142,6 @@ public class Cryptocurrency {
                 Objects.equals(symbol, that.symbol) &&
                 Objects.equals(slug, that.slug);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, name, symbol, slug);

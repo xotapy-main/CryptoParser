@@ -48,4 +48,8 @@ public class CryptoStorage {
             throw new IllegalArgumentException("\n*/name/* пустая строка\n");
         }
     }
+
+    public void save(Cryptocurrency crypto) {
+        saveData(crypto);
+    }
 }

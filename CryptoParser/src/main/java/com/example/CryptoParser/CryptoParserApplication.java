@@ -5,7 +5,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 
 @SpringBootApplication
 public class CryptoParserApplication {

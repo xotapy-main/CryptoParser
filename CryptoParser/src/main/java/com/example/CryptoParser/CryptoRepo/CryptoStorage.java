@@ -17,34 +17,35 @@ public class CryptoStorage {
     }
     public String findByName(String name){
         validateStorage(storage);
-        if(name.isEmpty()){
-            throw new IllegalArgumentException("*/name/* пустое");
-        }
+        validateInputName(name);
         Cryptocurrency temp = storage.get(name);
         if(temp == null){
-            return "Такой криптовалюты нет";
+            return "\nРезультат поиска:\nТакой криптовалюты нет";
         }
-        return temp.toString();
-    }
-    public ArrayList<Cryptocurrency> getAll(){
-        validateStorage(storage);
-        return new ArrayList<>(storage.values());
+        return "\nРезультат поиска:"+ temp.toString();
     }
     public void clear(){
         storage.clear();
-        System.out.println("Хранилище очищено!" + " " + (storage.isEmpty() ? true : false));
+        System.out.println("Хранилище очищено! ( Status: " + storage.isEmpty() + " )");
     }
-    public void replaceStorage(Map<String, Cryptocurrency> newStorage){
-        validateStorage(newStorage);
-        this.storage = newStorage;
-        System.out.println("Хранилище перемещено!");
+    public Cryptocurrency getByName(String name){
+        validateInputName(name);
+        return storage.get(name);
+    }
+    public boolean isEmpty(){
+        return storage.isEmpty();
     }
     private void validateStorage(Map<String, Cryptocurrency> value){
         if(value.isEmpty()){
             throw new IllegalArgumentException("Хранилище пустое!\n");
         }
     }
-    public boolean isEmpty(){
-        return storage.isEmpty();
+    public void validateInputName(String name){
+        if(name == null){
+            throw new IllegalArgumentException("\n*/name/* не может быть null\n");
+        }
+        else if(name.isEmpty()){
+            throw new IllegalArgumentException("\n*/name/* пустая строка\n");
+        }
     }
 }

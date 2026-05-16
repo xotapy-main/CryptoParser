@@ -22,8 +22,8 @@ public class CryptoParserApplication {
 			storage.saveData(etherium);
 			System.out.println(storage.findByName("Etherium"));
 		}
-		catch (Error message){
-			System.out.println("Ошибка валидации: " + message);
+		catch (Exception e){
+			System.out.println("Ошибка валидации: " + e.getMessage());
 		}
 	}
 

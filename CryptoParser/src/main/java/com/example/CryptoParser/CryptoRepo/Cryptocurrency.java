@@ -2,16 +2,16 @@ package com.example.CryptoParser.CryptoRepo;
 import java.math.BigDecimal;
 import java.util.Objects;
 public class Cryptocurrency {
-    private int id;
+    private long id;
     private String name;
     private String symbol;
     private String slug;
-    private int circulatingSupply;
+    private BigDecimal circulatingSupply;
     private BigDecimal priceUSD;
     private BigDecimal marketCapUSD;
 
-    public Cryptocurrency(int id, String name, String symbol, String slug,
-                          int circulatingSupply, BigDecimal priceUSD,
+    public Cryptocurrency(long id, String name, String symbol, String slug,
+                          BigDecimal circulatingSupply, BigDecimal priceUSD,
                           BigDecimal marketCapUSD) {
         validateID(id);
         validateName(name);
@@ -29,7 +29,7 @@ public class Cryptocurrency {
         this.marketCapUSD = marketCapUSD;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -61,11 +61,11 @@ public class Cryptocurrency {
         this.slug = slug;
     }
 
-    public long getCirculatingSupply() {
+    public BigDecimal getCirculatingSupply() {
         return circulatingSupply;
     }
 
-    public void setCirculatingSupply(int circulatingSupply) {
+    public void setCirculatingSupply(BigDecimal circulatingSupply) {
         this.circulatingSupply = circulatingSupply;
     }
 
@@ -85,8 +85,8 @@ public class Cryptocurrency {
         this.marketCapUSD = marketCapUSD;
     }
 
-    private void validateID(int id){
-        if(id < 0){
+    private void validateID(long id){
+        if(id < 0L){
             throw new IllegalArgumentException("*/Id/* не может быть отрицательным");
         }
     }
@@ -105,8 +105,8 @@ public class Cryptocurrency {
             throw new IllegalArgumentException("*/slug/* не может быть пустым");
         }
     }
-    private void validateCirculatingSupply(int circulatingSupply){
-        if(circulatingSupply < 0){
+    private void validateCirculatingSupply(BigDecimal circulatingSupply){
+        if(circulatingSupply.compareTo(BigDecimal.ZERO) < 0){
             throw new IllegalArgumentException("*/circulatingSupply/* не может быть отрицательным");
         }
     }
@@ -122,13 +122,13 @@ public class Cryptocurrency {
     }
     @Override
     public String toString(){
-        return  "\n" + id +
-                "\n" + name +
-                "\n" + symbol +
-                "\n" + slug +
-                "\n" + priceUSD +
-                "\n" + marketCapUSD +
-                "\n" + circulatingSupply + "\n";
+        return  "\nID: " + id +
+                "\nName: " + name +
+                "\nSymbol: " + symbol +
+                "\nSlug: " + slug +
+                "\nPrice (USD): " + priceUSD +
+                "\nMarke Cap. (USD): " + marketCapUSD +
+                "\nCirculating supply: " + circulatingSupply + "\n";
     }
 
     @Override
@@ -147,4 +147,3 @@ public class Cryptocurrency {
         return Objects.hash(id, name, symbol, slug);
     }
 }
-

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 @SpringBootTest
 class CryptoParserApplicationTests {
@@ -96,9 +97,22 @@ class CryptoParserApplicationTests {
 			CryptoStorage storage = new CryptoStorage();
 			storage.saveData(bitcoin);
 			storage.saveData(Etherium);
-			assertEquals(storage.isEmpty(), false);
+			assertFalse(storage.isEmpty());
 			storage.clear();
-			assertEquals(storage.isEmpty(), true);
+			assertTrue(storage.isEmpty());
+		}
+		@Test
+		@DisplayName("Тест функции GetAll")
+		public void GetAll(){
+			Cryptocurrency bitcoin = new Cryptocurrency(1, "Bitcoin", "B", "BTC", 12030123, new BigDecimal(100000000), new BigDecimal(1001231));
+			Cryptocurrency Etherium = new Cryptocurrency(1, "Etherium", "E", "ETH", 113123213, new BigDecimal(1000330), new BigDecimal(10011131));
+			CryptoStorage storage = new CryptoStorage();
+			storage.saveData(bitcoin);
+			storage.saveData(Etherium);
+			ArrayList<Cryptocurrency> CryptoList = storage.getAllCrypto();
+			assertEquals(CryptoList.get(0), bitcoin);
+			assertEquals(CryptoList.get(1), Etherium);
+
 		}
 	}
 

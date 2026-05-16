@@ -13,7 +13,6 @@ public class CryptoStorage {
     public void saveData(Cryptocurrency value){
         storage.put(value.getName(), value);
         counter++;
-        System.out.println("Дебаг: добалено значение криптовалюты новое" + value.getName() + " номер: " + counter);
     }
     public String findByName(String name){
         validateStorage(storage);
@@ -32,6 +31,10 @@ public class CryptoStorage {
         validateInputName(name);
         return storage.get(name);
     }
+    public ArrayList<Cryptocurrency> getAllCrypto(){
+        validateStorage(storage);
+        return new ArrayList<>(storage.values());
+    }
     public boolean isEmpty(){
         return storage.isEmpty();
     }
@@ -47,5 +50,9 @@ public class CryptoStorage {
         else if(name.isEmpty()){
             throw new IllegalArgumentException("\n*/name/* пустая строка\n");
         }
+    }
+
+    public void save(Cryptocurrency crypto) {
+        saveData(crypto);
     }
 }
